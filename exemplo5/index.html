@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Aplicação Vue.js</title>
+</head>
+<body>
+  <!-- Div principal controlada pelo Vue.js -->
+  <div id="app">
+    <ul>
+      <!-- Diretiva 'v-for' do Vue para iterar sobre o array 'items' -->
+      <!-- ':key' atribui uma chave única para cada item, melhorando o desempenho -->
+      <li v-for="item in items" :key="item">{{ item }}</li>
+    </ul>
+  </div>
+
+  <!-- Inclui a biblioteca Vue.js via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+  <script>
+  // Cria uma nova instância do Vue
+  new Vue({
+    // Especifica o elemento DOM onde o Vue será montado
+    el: '#app',
+    // Dados reativos da aplicação
+    data: {
+      items: [] // Array que armazenará os itens obtidos do servidor
+    },
+    // Hook de ciclo de vida chamado quando a instância é montada no DOM
+    mounted() {
+      // Faz uma requisição HTTP para obter os itens da API
+      fetch('http://localhost:4000/api/items')
+        .then(response => response.json())
+        .then(data => {
+          // Atualiza o array 'items' com os dados recebidos
+          this.items = data;
+        });
+    }
+  })
+  </script>
+</body>
+</html>

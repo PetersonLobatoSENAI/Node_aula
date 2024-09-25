@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Define o conjunto de caracteres para UTF-8 -->
+    <meta charset="UTF-8">
+    <!-- Título da página que aparece na aba do navegador -->
+    <title>Teste do Servidor Express</title>
+</head>
+<body>
+    <!-- Cabeçalho principal da página -->
+    <h1>Teste do Servidor Express com Helmet</h1>
+    <!-- Div onde o conteúdo retornado pelo servidor será exibido -->
+    <div id="content">Carregando...</div>
+
+    <script>
+        // Faz uma requisição HTTP GET para o servidor Express na URL 'http://localhost:3000/'
+        fetch('http://localhost:4000/')
+            // Quando a resposta é recebida, converte o corpo da resposta em texto
+            .then(response => response.text())
+            // Depois de converter para texto, executa a função com os dados recebidos
+            .then(data => {
+                // Atualiza o conteúdo da div com id 'content' com os dados recebidos do servidor
+                document.getElementById('content').innerHTML = data;
+            })
+            // Captura qualquer erro que ocorra durante a requisição
+            .catch(error => {
+                // Exibe o erro no console do navegador para depuração
+                console.error('Erro ao acessar o servidor:', error);
+                // Atualiza o conteúdo da div 'content' informando que não foi possível conectar
+                document.getElementById('content').innerHTML = 'Não foi possível conectar ao servidor.';
+            });
+    </script>
+</body>
+</html>

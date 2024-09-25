@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Exemplo Vue.js</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{ message }}</p>
+        <button v-on:click="reverseMessage">Inverter Mensagem</button>
+    </div>
+
+    <!-- Inclua o Vue.js
+    Vue.js é um framework JavaScript progressivo para a construção de interfaces de usuário.
+    Ele permite que você crie aplicativos web interativos de forma simples e intuitiva. 
+    -->
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+    <!-- Seu script Vue -->
+    <script>
+    new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Vue!'
+      },
+      methods: {
+        reverseMessage: function () {
+          this.message = this.message.split('').reverse().join('')
+        }
+      }
+    })
+    </script>
+</body>
+</html>
